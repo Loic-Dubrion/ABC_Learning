@@ -12,8 +12,8 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| username | TEXT | |
-| email | TEXT | |
+| username | TEXT | UNIQUE |
+| email | TEXT | UNIQUE |
 | password | TEXT | |
 | establishment_id | INTEGER | Foreign Key - establishment.id |
 
@@ -21,13 +21,13 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | TEXT | |
+| name | TEXT | UNIQUE |
 
 **authorisation**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | TEXT | |
+| name | TEXT | UNIQUE |
 
 **user_has_role**
 | Column | Type | |
@@ -64,8 +64,9 @@ Pour mémoire :
 | activity_id | INTEGER | Foreign Key - activity.id |
 | comments | TEXT | |
 | time | INTEGER | |
-| face_to_face | BOOLEAN | |
-| equipment | BOOLEAN | |
+| is_presentiel | BOOLEAN | |
+| is_group_work | BOOLEAN | |
+| equipment | TEXT | |
 
 **activity**
 | Column | Type | |
