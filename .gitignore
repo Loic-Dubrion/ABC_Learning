@@ -1,3 +1,6 @@
+# Config
+sqitch.conf
+
 # Logs
 logs
 *.log
