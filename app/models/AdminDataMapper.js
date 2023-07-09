@@ -4,11 +4,6 @@ const CoreDataMapper = require('./CoreDataMapper');
 class AdminDataMapper extends CoreDataMapper {
   static viewName = 'stat_admin';
 
-  /**
-   * create a admin data mapper
-   *
-   * @augments CoreDataMapper
-   */
   constructor() {
     super();
   }

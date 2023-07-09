@@ -5,7 +5,6 @@ const { apiController } = require('../../controllers/API');
 
 // Routers
 const adminRouter = require('./admin');
-const oworldRouter = require('./oworld');
 const userRouter = require('./user');
 const logRouter = require('./log');
 
@@ -18,7 +17,6 @@ const router = express.Router();
 // Documentation
 router.all('/', apiController.getHome);
 
-router.use('/oworld', oworldRouter);
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/log', logRouter);

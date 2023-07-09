@@ -12,81 +12,10 @@ const auth = require('../services/jwtService');
 class UserController extends CoreController {
   static dataMapper = userDataMapper;
 
-  /**
-   * Create a user controller.
-   *
-   * @augments CoreController
-   */
   constructor() {
     super();
   }
 
-  /**
-   * Get the favorite countries for a specific user.
-   *
-   * @param {Object} request - A country's iso3 code in the url
-   * @param {Object} response - General data about a country
-   */
-  async getFavoriteCountries(request, response) {
-    const { userId } = request.params;
-    const results = await this.constructor.dataMapper.executeFunction('favorite_countries', userId);
-    response.json(results);
-  }
-
-  /**
-   * Add a country to the favorites for a specific user.
-   *
-   * @param {Object} request - A country's iso3 code and a user ID in the url
-   * @param {Object} response - The response object.
-   */
-  async addFavorite(request, response) {
-    const { userId, countryISO } = request.params;
-
-    // Check if the country exists
-    const queryCountry = {
-      text: 'SELECT * FROM "country" WHERE iso3 = $1',
-      values: [countryISO],
-    };
-
-    const country = await client.query(queryCountry);
-    if (country.rows.length === 0) {
-      throw new Error400('This country does not exist');
-    }
-    const countryId = country.rows[0].id;
-
-    // Check if the country is already a favorite
-    const queryFavorite = {
-      text: 'SELECT * FROM "user_has_favorite" WHERE country_id = $1 and user_id = $2',
-      values: [countryId, userId],
-    };
-
-    const isFavorite = await client.query(queryFavorite);
-    if (isFavorite.rows.length > 0) {
-      throw new Error400('This country is already one of the favourites');
-    }
-
-    const results = await this.constructor.dataMapper.executeFunction('insert_favorite', userId, countryISO);
-    response.json(results);
-  }
-
-  /**
-   * Delete a country from the favorites for a specific user.
-   *
-   * @param {Object} request - A country's iso3 code and a user ID in the url
-   * @param {Object} response - The response object.
-   */
-  async deleteFavorite(request, response) {
-    const { userId, countryISO } = request.params;
-    const results = await this.constructor.dataMapper.executeFunction('delete_favorite', userId, countryISO);
-    response.json(results);
-  }
-
-  /**
-   * Add a new user.
-   *
-   * @param {Object} request - The request object, username, email, password, countryId, birth date.
-   * @param {Object} response - The response object.
-   */
   async addUser(request, response) {
     const dataUser = request.body;
     // check for an identical user.

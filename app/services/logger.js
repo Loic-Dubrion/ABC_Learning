@@ -14,7 +14,7 @@ if (env === 'development') {
 // If prod environment, add the flow in the file logs/
 if (env === 'production') {
   streams.push({
-    path: 'logs/oWorld.log',
+    path: 'logs/abc_learning.log',
     level: 'error',
     type: 'rotating-file',
     period: '1d',
@@ -23,7 +23,7 @@ if (env === 'production') {
 }
 
 const logger = bunyan.createLogger({
-  name: 'O\'World',
+  name: 'ABC_Learning',
   level: 'trace',
   streams,
 });
