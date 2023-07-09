@@ -4,22 +4,30 @@
   "description": "backend application for an abc learning project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js | bunyan -o short",
+    "start": "node index.js | bunyan -o short",
+    "db:create": "sqitch revert -y && sqitch deploy",
+    "db:reset": "npm run db:create && npm run db:seed | bunyan -o short",
+    "db:save": "node app/services/secureDB/pg_dump.js | bunyan -o short"
   },
   "author": "Loïc Dubrion",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.44.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-import": "^2.27.5",
+    "nodemon": "^3.0.0"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "bunyan": "^1.8.15",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-jsdoc-swagger": "^1.8.0",
     "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.1",
+    "memoizee": "^0.4.15",
     "nodemailer": "^6.9.3",
     "pg": "^8.11.1",
     "sanitizer": "^0.1.3"
