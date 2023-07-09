@@ -79,8 +79,8 @@ CREATE TABLE "tool" (
 CREATE TABLE "activity" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
-    "level_id" INTEGER REFERENCES "level"("id") ON DELETE CASCADE,
-    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE CASCADE,
+    "level_id" INTEGER REFERENCES "level"("id") ON DELETE SET NULL,
+    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -88,7 +88,7 @@ CREATE TABLE "activity" (
 CREATE TABLE "session" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "sequence_id" INTEGER REFERENCES "sequence"("id") ON DELETE CASCADE,
-    "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE CASCADE,
+    "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE SET NULL,
     "comments" TEXT,
     "time" INTEGER,
     "is_presentiel" BOOLEAN,
@@ -108,8 +108,8 @@ CREATE TABLE "card" (
 
 CREATE TABLE "card_has_tool" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "card_id" INTEGER REFERENCES "card"("id") ON DELETE CASCADE,
-    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE CASCADE,
+    "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
+    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
