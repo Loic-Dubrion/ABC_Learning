@@ -62,6 +62,7 @@ Pour mémoire :
 | id | INTEGER | Primary Key |
 | sequence_id | INTEGER | Foreign Key - sequence.id |
 | activity_id | INTEGER | Foreign Key - activity.id |
+| card_id | INTEGER | Foreign Key - card.id |
 | comments | TEXT | |
 | time | INTEGER | |
 | is_presentiel | BOOLEAN | |
@@ -94,10 +95,3 @@ Pour mémoire :
 | id | INTEGER | Primary Key |
 | name | TEXT | UNIQUE |
 | comments | TEXT | |
-
-**card_has_tool**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| card_id | INTEGER | Foreign Key - card.id |
-| tool_id | INTEGER | Foreign Key - tool.id |

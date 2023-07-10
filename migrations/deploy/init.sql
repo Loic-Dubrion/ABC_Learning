@@ -85,9 +85,18 @@ CREATE TABLE "activity" (
     "updated_at" TIMESTAMPTZ
 );
 
+CREATE TABLE "card" (
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT UNIQUE NOT NULL,
+    "comments" TEXT NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ
+);
+
 CREATE TABLE "session" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "sequence_id" INTEGER REFERENCES "sequence"("id") ON DELETE CASCADE,
+    "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
     "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE SET NULL,
     "comments" TEXT,
     "time" INTEGER,
@@ -98,20 +107,16 @@ CREATE TABLE "session" (
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "card" (
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT UNIQUE NOT NULL,
-    "comments" TEXT NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-    "updated_at" TIMESTAMPTZ
+CREATE TABLE "activity_has_card" (
+    "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE CASCADE,
+    "card_id" INTEGER REFERENCES "card"("id") ON DELETE CASCADE,
+    PRIMARY KEY ("activity_id", "card_id")
 );
 
 CREATE TABLE "card_has_tool" (
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
-    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE SET NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-    "updated_at" TIMESTAMPTZ
+    "card_id" INTEGER REFERENCES "card"("id") ON DELETE CASCADE,
+    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE CASCADE,
+    PRIMARY KEY ("card_id", "tool_id")
 );
 
 COMMIT;

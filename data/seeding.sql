@@ -1,5 +1,3 @@
--- Seed script
-
 BEGIN;
 
 -- Insertion into 'establishment' table
@@ -77,33 +75,42 @@ INSERT INTO activity (name, level_id, tool_id)
   ('PeerTube', 1, 3),
   ('YouTube', 2, 3);
 
--- Insertion into 'session' table
-INSERT INTO session (sequence_id, activity_id, comments, time, is_face_to_face, is_group_work, equipment)
-VALUES (1, 1, 'Session 1', 60, false, false, 'Laptop'),
-       (2, 2, 'Session 2', 120, false, true, 'Projector');
-
 -- Insertion into 'card' table
 INSERT INTO card (name, comments)
   VALUES 
-  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos 
-'),
-  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught 
-'),
-  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher, 
-and/or from their peers 
-'),
-  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action. Feedback may come from self-reflection, from peers, from the teacher, or from the activity itself, if it shows them how to improve the result of their action in relation to the goal
-'),
-  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself
-'),
-  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice
-');
+  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos'),
+  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught'),
+  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher and/or from their peers'),
+  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action.'),
+  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself'),
+  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice');
+
+-- Insertion into 'session' table
+INSERT INTO session (sequence_id, card_id, activity_id, comments, time, is_face_to_face, is_group_work, equipment)
+  VALUES 
+  (1, 1, 1, 'Session 1', 60, false, false, 'Laptop'),
+  (1, 2, 1, 'Session 2', 30, false, false, 'Laptop'),
+  (1, 3, 1, 'Session 3', 90, false, false, 'Laptop'),
+  (1, 4, 1, 'Session 4', 30, false, false, 'Laptop'),
+  (2, 1, 1, 'Session 1', 60, false, false, 'Laptop'),
+  (2, 2, 2, 'Session 2', 120, false, true, 'Projector');
+
+-- Insertion into 'activity_has_card' table
+INSERT INTO activity_has_card (activity_id, card_id)
+  VALUES
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 1),
+  (8, 2);
 
 -- Insertion into 'card_has_tool' table
 INSERT INTO card_has_tool (card_id, tool_id)
-  VALUES 
+  VALUES
   (1, 1),
-  (2, 1),
   (2, 2),
   (2, 3),
   (3, 1),
