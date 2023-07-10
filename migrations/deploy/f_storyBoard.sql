@@ -6,28 +6,30 @@ CREATE OR REPLACE FUNCTION get_activities(id_card INTEGER)
 RETURNS JSON
 LANGUAGE SQL
 AS $$
-    SELECT json_object_agg(
-        c.name,
-        (
-            SELECT json_object_agg(
-                t.name,
-                (
-                    SELECT json_agg(a.name ORDER BY a.name)
+    SELECT json_agg(json_build_object(
+        'card_id', c.id,
+        'card_name', c.name,
+        'tools', (
+            SELECT json_agg(json_build_object(
+                'tool_id', t.id,
+                'tool_name', t.name,
+                'activities', (
+                    SELECT json_agg(json_build_object(
+                        'activity_id', a.id,
+                        'activity_name', a.name
+                    ) ORDER BY a.id)
                     FROM activity a
-                    JOIN activity_has_card ahc ON ahc.activity_id = a.id
-                    WHERE ahc.card_id = c.id AND cht.tool_id = t.id
+                    JOIN activity_has_card ahc ON a.id = ahc.activity_id AND c.id = ahc.card_id
+                    WHERE t.id = a.tool_id
                 )
-                ORDER BY t.id
-            )
+            ) ORDER BY t.id)
             FROM tool t
-            JOIN card_has_tool cht ON cht.tool_id = t.id
-            WHERE cht.card_id = c.id
+            JOIN card_has_tool cht ON t.id = cht.tool_id AND c.id = cht.card_id
         )
-    )
+    ))
     FROM card c
-    WHERE c.id = id_card
-    GROUP BY c.id
-    ORDER BY c.id;
+    WHERE c.id = id_card;
 $$;
+
 
 COMMIT;

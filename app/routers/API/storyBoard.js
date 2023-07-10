@@ -11,4 +11,9 @@ router.get(
   controllerHandler(storyBoardController.getAll.bind(storyBoardController)),
 );
 
+router.get(
+  '/cards/:cardId',
+  controllerHandler(storyBoardController.getActivities.bind(storyBoardController)),
+);
+
 module.exports = router;
