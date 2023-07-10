@@ -91,7 +91,7 @@ CREATE TABLE "session" (
     "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE SET NULL,
     "comments" TEXT,
     "time" INTEGER,
-    "is_presentiel" BOOLEAN,
+    "is_face_to_face" BOOLEAN,
     "is_group_work" BOOLEAN,
     "equipment" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -101,7 +101,7 @@ CREATE TABLE "session" (
 CREATE TABLE "card" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
-    "comments" TEXT,
+    "comments" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
