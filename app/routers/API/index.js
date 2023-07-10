@@ -7,6 +7,7 @@ const { apiController } = require('../../controllers/API');
 const adminRouter = require('./admin');
 const userRouter = require('./user');
 const logRouter = require('./log');
+const storyBoardRouter = require('./storyBoard');
 
 // Middlewares
 const Error404 = require('../../errors/Error404');
@@ -20,6 +21,7 @@ router.all('/', apiController.getHome);
 router.use('/user', userRouter);
 router.use('/admin', adminRouter);
 router.use('/log', logRouter);
+router.use('/storyBoard', storyBoardRouter);
 
 // End of the road... Error 404
 router.use((request, response, next) => {

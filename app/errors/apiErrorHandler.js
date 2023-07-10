@@ -9,13 +9,6 @@ const {
 const sendEmail = require('../services/mailer/sender');
 const logger = require('../services/logger');
 
-/**
- * Error handler for API requests.
- *
- * @param {Error} err - The error object.
- * @param {Object} __req - The request object (unused).
- * @param {Object} res - The response object.
- */
 function apiErrorHandler(err, __req, res) {
   logger.error(err);
 

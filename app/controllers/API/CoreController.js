@@ -1,10 +1,12 @@
 /** Class representing an abstract core controller. */
 class CoreController {
-  static dataMapper;
+  constructor(dataMapper) {
+    this.dataMapper = dataMapper;
+  }
 
   async getAll(request, response) {
-    const useView = request.query.useView === 'true';
-    const results = await this.constructor.dataMapper.findAll(useView);
+    const { useView } = request.query;
+    const results = await this.dataMapper.findAll(useView);
     response.json(results);
   }
 

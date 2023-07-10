@@ -1,6 +1,7 @@
 const adminController = require('./AdminController');
 const userController = require('./UserController');
 const jwtController = require('./JwtController');
+const storyBoardController = require('./StoryBoardController');
 
 const apiController = {
   getHome(request, response) {
@@ -14,4 +15,5 @@ module.exports = {
   adminController,
   userController,
   jwtController,
+  storyBoardController,
 };

@@ -1,9 +1,10 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const memoizee = require('memoizee');
 const client = require('../services/clientDB/clientPostgres');
 
 class CoreDataMapper {
   constructor() {
-    this.findAll = memoizee(this.findAll.bind(this), { promise: true, maxAge: 30 * 1000 });
+    this.findAll = memoizee(this.findAll.bind(this), { promise: true, maxAge: 10 });
   }
 
   async findAll(useView) {
