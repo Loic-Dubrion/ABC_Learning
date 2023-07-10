@@ -1,4 +1,8 @@
 @baseUrl = http://localhost:3000/api
 
 ### StoryBoard ###
+# List of cards
 GET {{baseUrl}}/storyBoard/cards
+###
+# Detail of a card
+GET {{baseUrl}}/storyBoard/cards/1
