@@ -99,9 +99,11 @@ INSERT INTO session (sequence_id, card_id, activity_id, comments, time, is_face_
 INSERT INTO activity_has_card (activity_id, card_id)
   VALUES
   (1, 1),
+  (2, 1),
   (2, 2),
   (3, 3),
   (4, 4),
+  (4, 1),
   (5, 5),
   (6, 6),
   (7, 1),
@@ -111,6 +113,8 @@ INSERT INTO activity_has_card (activity_id, card_id)
 INSERT INTO card_has_tool (card_id, tool_id)
   VALUES
   (1, 1),
+  (1, 2),
+  (1, 3),
   (2, 2),
   (2, 3),
   (3, 1),
