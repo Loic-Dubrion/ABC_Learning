@@ -16,10 +16,12 @@ AS $$
                 'activities', (
                     SELECT json_agg(json_build_object(
                         'activity_id', a.id,
-                        'activity_name', a.name
+                        'activity_name', a.name,
+                        'level_id', l.id,
+                        'level_name', l.name
                     ) ORDER BY a.id)
                     FROM activity a
-                    JOIN activity_has_card ahc ON a.id = ahc.activity_id AND c.id = ahc.card_id
+                    JOIN level l ON a.level_id = l.id
                     WHERE t.id = a.tool_id
                 )
             ) ORDER BY t.id)
@@ -30,6 +32,5 @@ AS $$
     FROM card c
     WHERE c.id = id_card;
 $$;
-
 
 COMMIT;
