@@ -60,6 +60,7 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
+| name | TEXT | UNIQUE |
 | sequence_id | INTEGER | Foreign Key - sequence.id |
 | activity_id | INTEGER | Foreign Key - activity.id |
 | card_id | INTEGER | Foreign Key - card.id |

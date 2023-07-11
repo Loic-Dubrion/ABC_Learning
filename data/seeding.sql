@@ -86,14 +86,14 @@ INSERT INTO card (name, comments)
   ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice');
 
 -- Insertion into 'session' table
-INSERT INTO session (sequence_id, card_id, activity_id, comments, time, is_face_to_face, is_group_work, equipment)
+INSERT INTO session (name, sequence_id, card_id, activity_id, comments, time, is_face_to_face, is_group_work, equipment)
   VALUES 
-  (1, 1, 1, 'Session 1', 60, false, false, 'Laptop'),
-  (1, 2, 1, 'Session 2', 30, false, false, 'Laptop'),
-  (1, 3, 1, 'Session 3', 90, false, false, 'Laptop'),
-  (1, 4, 1, 'Session 4', 30, false, false, 'Laptop'),
-  (2, 1, 1, 'Session 1', 60, false, false, 'Laptop'),
-  (2, 2, 2, 'Session 2', 120, false, true, 'Projector');
+  ('Session 1', 1, 1, 1, 'Comment', 60, false, false, 'Laptop'),
+  ('Session 2', 1, 2, 1, 'Comment', 30, false, false, 'Laptop'),
+  ('Session 3', 1, 3, 1, 'Comment', 90, false, false, 'Laptop'),
+  ('Session 4', 1, 4, 1, 'Comment', 30, false, false, 'Laptop'),
+  ('Session 5', 2, 1, 1, 'Comment', 60, false, false, 'Laptop'),
+  ('Session 6', 2, 2, 2, 'Comment', 120, false, true, 'Projector');
 
 -- Insertion into 'activity_has_card' table
 INSERT INTO activity_has_card (activity_id, card_id)

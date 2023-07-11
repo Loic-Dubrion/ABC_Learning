@@ -2,11 +2,12 @@
 
 BEGIN;
 
+-- Recovers activities linked to a card
 CREATE OR REPLACE FUNCTION get_activities(id_card INTEGER)
 RETURNS JSON
 LANGUAGE SQL
 AS $$
-    SELECT json_agg(json_build_object(
+    SELECT json_build_object(
         'card_id', c.id,
         'card_name', c.name,
         'tools', (
@@ -28,7 +29,7 @@ AS $$
             FROM tool t
             JOIN card_has_tool cht ON t.id = cht.tool_id AND c.id = cht.card_id
         )
-    ))
+    )
     FROM card c
     WHERE c.id = id_card;
 $$;

@@ -95,6 +95,7 @@ CREATE TABLE "card" (
 
 CREATE TABLE "session" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT UNIQUE NOT NULL,
     "sequence_id" INTEGER REFERENCES "sequence"("id") ON DELETE CASCADE,
     "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
     "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE SET NULL,
