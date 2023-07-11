@@ -3,5 +3,6 @@
 BEGIN;
 
 DROP FUNCTION IF EXISTS "create_session";
+DROP FUNCTION IF EXISTS "update_session";
 
 COMMIT;

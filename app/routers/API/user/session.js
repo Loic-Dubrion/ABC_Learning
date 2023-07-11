@@ -18,11 +18,14 @@ router.get(
 );
 
 // Update
-// router.put('/:sessionId', SessionController.updateSession);
+router.put(
+  '/:id',
+  controllerHandler(SessionController.updateSession.bind(SessionController)),
+);
 
 // Delete
 router.delete(
-  '/:sessionId',
+  '/:id',
   controllerHandler(SessionController.delete.bind(SessionController)),
 );
 

@@ -1,8 +1,11 @@
 @baseUrl = http://localhost:3000/api/user/{{userId}}/session
 @userId = 1
-@sessionId = 5
+@sessionId = 1
 
 ### Session ###
+# Read Session
+GET {{baseUrl}}/{{sessionId}}
+###
 # Create Session
 POST {{baseUrl}}/
 Content-Type: application/json
@@ -19,8 +22,21 @@ Content-Type: application/json
   "equipment": "Laptop"
 }
 ###
-# Read Session
-GET {{baseUrl}}/{{sessionId}}
+# Update Session
+PUT {{baseUrl}}/{{sessionId}}
+Content-Type: application/json
+
+{
+  "name": "Consolider les acquis",
+  "sequence_id": 1,
+  "card_id": 6,
+  "activity_id": 6,
+  "comments": "Par groupe de 4 max, mélanger les niveaux",
+  "time": 60,
+  "is_face_to_face": true,
+  "is_group_work": true,
+  "equipment": "Laptop"
+}
 ###
 # Delete Session
 DELETE {{baseUrl}}/{{sessionId}}

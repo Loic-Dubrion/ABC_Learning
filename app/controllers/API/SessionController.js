@@ -11,6 +11,13 @@ class SessionController extends CoreController {
     const results = await this.dataMapper.executeFunction('create_session', objData);
     response.status(201).json(results);
   }
+
+  async updateSession(request, response) {
+    const { id } = request.params;
+    const { ...objData } = request.body;
+    const results = await this.dataMapper.executeFunction('update_session', id, objData);
+    response.status(201).json(results);
+  }
 }
 
 module.exports = new SessionController();
