@@ -36,6 +36,15 @@ class CoreDataMapper {
     return results.rows[0];
   }
 
+  async delete(id) {
+    const preparedQuery = {
+      text: `DELETE FROM "${this.constructor.tableName}" WHERE id=$1`,
+      values: [id],
+    };
+    await client.query(preparedQuery);
+    return `${this.constructor.tableName} has been deleted`;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   async executeFunction(functionName, ...params) {
     const preparedQuery = {

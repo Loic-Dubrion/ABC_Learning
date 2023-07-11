@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/api/user/{{userId}}/session
 @userId = 1
-@sessionId = 1
+@sessionId = 5
 
 ### Session ###
 # Create Session
@@ -21,3 +21,6 @@ Content-Type: application/json
 ###
 # Read Session
 GET {{baseUrl}}/{{sessionId}}
+###
+# Delete Session
+DELETE {{baseUrl}}/{{sessionId}}

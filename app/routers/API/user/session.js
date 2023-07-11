@@ -21,6 +21,9 @@ router.get(
 // router.put('/:sessionId', SessionController.updateSession);
 
 // Delete
-// router.delete('/:sessionId', SessionController.deleteSession);
+router.delete(
+  '/:sessionId',
+  controllerHandler(SessionController.delete.bind(SessionController)),
+);
 
 module.exports = router;

@@ -18,7 +18,13 @@ class CoreController {
 
   async getOneByField(request, response) {
     const { field, value } = request.query;
-    const results = await this.constructor.dataMapper.findOneByField(field, value);
+    const results = await this.dataMapper.findOneByField(field, value);
+    response.json(results);
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+    const results = await this.dataMapper.delete(id);
     response.json(results);
   }
 }
