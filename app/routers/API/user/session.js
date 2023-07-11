@@ -12,7 +12,10 @@ router.post(
 );
 
 // Read
-// router.get('/:sessionId', SessionController.getSession);
+router.get(
+  '/:id',
+  controllerHandler(SessionController.getOneByPk.bind(SessionController)),
+);
 
 // Update
 // router.put('/:sessionId', SessionController.updateSession);

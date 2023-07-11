@@ -16,6 +16,16 @@ class CoreDataMapper {
     return results.rows;
   }
 
+  async findByPk(id) {
+    const { tableName } = this.constructor;
+    const preparedQuery = {
+      text: `SELECT * FROM "${tableName}" WHERE id=$1`,
+      values: [id],
+    };
+    const results = await client.query(preparedQuery);
+    return results.rows[0];
+  }
+
   async findOneByField(field, value) {
     const { tableName } = this.constructor;
     const query = {

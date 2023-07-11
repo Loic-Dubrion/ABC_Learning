@@ -10,7 +10,13 @@ class CoreController {
     response.json(results);
   }
 
-  async getOne(request, response) {
+  async getOneByPk(request, response) {
+    const { id } = request.params;
+    const results = await this.dataMapper.findByPk(id);
+    response.json(results);
+  }
+
+  async getOneByField(request, response) {
     const { field, value } = request.query;
     const results = await this.constructor.dataMapper.findOneByField(field, value);
     response.json(results);
