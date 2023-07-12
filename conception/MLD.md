@@ -1,98 +1,17 @@
-# MLD DATABASE ABC_Learning
+# MLD
 
-Pour mémoire :
-
-- Si depuis une table on a un N en cardinalité => FK dans l'autre table
-- Si depuis une table on n'a pas de N en cardinalité => Pas de FK
-- Si on N des 2 côtés => Table de liason avec 2 FK
-
-## TABLES
-
-**user**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| username | TEXT | UNIQUE |
-| email | TEXT | UNIQUE |
-| password | TEXT | |
-| establishment_id | INTEGER | Foreign Key - establishment.id |
-
-**role**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-
-**authorisation**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-
-**user_has_role**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| user_id | INTEGER | Foreign Key - user.id |
-| role_id | INTEGER | Foreign Key - role.id |
-
-**role_has_authorisation**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| role_id | INTEGER | Foreign Key - role.id |
-| authorisation_id | INTEGER | Foreign Key - authorisation.id |
-
-**establishment**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-
-**sequence**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-| user_id | INTEGER | Foreign Key - user.id |
-
-**session**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-| sequence_id | INTEGER | Foreign Key - sequence.id |
-| activity_id | INTEGER | Foreign Key - activity.id |
-| card_id | INTEGER | Foreign Key - card.id |
-| comments | TEXT | |
-| time | INTEGER | |
-| is_presentiel | BOOLEAN | |
-| is_group_work | BOOLEAN | |
-| equipment | TEXT | |
-
-**activity**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-| level_id | INTEGER | Foreign Key - level.id |
-| tool_id | INTEGER | Foreign Key - tool.id |
-
-**level**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-
-**tool**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-
-**card**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | TEXT | UNIQUE |
-| comments | TEXT | |
+- establishment(id, name, created_at, updated_at)
+- user(id, username, email, password, establishment_id, created_at, updated_at)
+- role(id, name, created_at, updated_at)
+- authorisation(id, name, created_at, updated_at)
+- user_has_role(id, user_id, role_id, created_at, updated_at)
+- role_has_authorisation(id, role_id, authorisation_id, created_at, updated_at)
+- sequence(id, name, user_id, created_at, updated_at)
+- level(id, name, created_at, updated_at)
+- tool_category(id, name, created_at, updated_at)
+- tool(id, name, level_id, tool_category_id, created_at, updated_at)
+- card(id, name, comments, created_at, updated_at)
+- activity(id, name, card_id, created_at, updated_at)
+- session(id, name, sequence_id, card_id, tool_id, comments, time, is_face_to_face, is_group_work, equipment, created_at, updated_at)
+- tool_category_has_card(tool_category_id, card_id)
+- card_has_tool(card_id, tool_id)

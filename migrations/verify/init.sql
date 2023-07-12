@@ -20,11 +20,13 @@ SELECT * FROM
     "role_has_authorisation", 
     "sequence",
     "level",
+    "tool_category",
     "tool",
     "activity",
     "session",
     "card",
-    "card_has_tool" 
+    "card_has_tool"
+    "tool_category_has_card" 
 WHERE false;
 
 ROLLBACK;

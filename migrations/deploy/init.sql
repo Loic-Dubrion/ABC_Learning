@@ -69,18 +69,18 @@ CREATE TABLE "level" (
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "tool" (
+CREATE TABLE "tool_category" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "activity" (
+CREATE TABLE "tool" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
     "level_id" INTEGER REFERENCES "level"("id") ON DELETE SET NULL,
-    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE SET NULL,
+    "tool_category_id" INTEGER REFERENCES "tool_category"("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -93,12 +93,20 @@ CREATE TABLE "card" (
     "updated_at" TIMESTAMPTZ
 );
 
+CREATE TABLE "activity" (
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT[] NOT NULL,
+    "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ
+);
+
 CREATE TABLE "session" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
     "sequence_id" INTEGER REFERENCES "sequence"("id") ON DELETE CASCADE,
     "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
-    "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE SET NULL,
+    "tool_id" INTEGER REFERENCES "tool"("id") ON DELETE SET NULL,
     "comments" TEXT,
     "time" INTEGER,
     "is_face_to_face" BOOLEAN,
@@ -108,10 +116,10 @@ CREATE TABLE "session" (
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "activity_has_card" (
-    "activity_id" INTEGER REFERENCES "activity"("id") ON DELETE CASCADE,
+CREATE TABLE "tool_category_has_card" (
+    "tool_category_id" INTEGER REFERENCES "tool_category"("id") ON DELETE CASCADE,
     "card_id" INTEGER REFERENCES "card"("id") ON DELETE CASCADE,
-    PRIMARY KEY ("activity_id", "card_id")
+    PRIMARY KEY ("tool_category_id", "card_id")
 );
 
 CREATE TABLE "card_has_tool" (

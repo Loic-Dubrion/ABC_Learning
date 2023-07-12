@@ -3,10 +3,11 @@
 BEGIN;
 
 DROP TABLE IF EXISTS "card_has_tool";
-DROP TABLE IF EXISTS "activity_has_card";
+DROP TABLE IF EXISTS "tool_category_has_card";
 DROP TABLE IF EXISTS "session";
 DROP TABLE IF EXISTS "activity";
 DROP TABLE IF EXISTS "tool";
+DROP TABLE IF EXISTS "tool_category";
 DROP TABLE IF EXISTS "level";
 DROP TABLE IF EXISTS "sequence";
 DROP TABLE IF EXISTS "card";

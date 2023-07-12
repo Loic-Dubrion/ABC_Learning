@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/api/user/{{userId}}/session
 @userId = 1
-@sessionId = 1
+@sessionId = 7
 
 ### Session ###
 # Read Session
@@ -11,10 +11,10 @@ POST {{baseUrl}}/
 Content-Type: application/json
 
 {
-  "name": "Consolider les acquis",
+  "name": "Conslider les acquis",
   "sequence_id": 1,
   "card_id": 6,
-  "activity_id": 6,
+  "tool_id": 19,
   "comments": "Par groupe de 4 max, mélanger les niveaux",
   "time": 60,
   "is_face_to_face": true,
