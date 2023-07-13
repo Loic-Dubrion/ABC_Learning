@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000/api/user/{{userId}}/session
 @userId = 1
-@sessionId = 7
+@sessionId = 8
 
 ### Session ###
 # Read Session

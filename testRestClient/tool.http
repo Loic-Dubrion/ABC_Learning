@@ -1,0 +1,32 @@
+@baseUrl = http://localhost:3000/api/user/tool
+@toolId = 59
+
+### Session ###
+# Read All tools
+GET {{baseUrl}}/
+###
+# Read One tools
+GET {{baseUrl}}/{{toolId}}/
+###
+# Create Tool
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "name": "Bière",
+  "level_id": 1,
+  "tool_category_id": 4
+}
+###
+# Update Tool
+PUT {{baseUrl}}/{{toolId}}
+Content-Type: application/json
+
+{
+  "name": "Vin",
+  "level_id": 1,
+  "tool_category_id": 4
+}
+###
+# Delete Tool
+DELETE  {{baseUrl}}/{{toolId}}/
