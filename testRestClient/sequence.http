@@ -10,23 +10,19 @@ GET {{baseUrl}}/{{userId}}/sequence/
 GET {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
 ###
 # Create sequence
-POST {{baseUrl}}/
+POST {{baseUrl}}/{{userId}}/sequence/
 Content-Type: application/json
 
 {
-  "name": "Bière",
-  "level_id": 1,
-  "sequence_category_id": 4
+  "name": "Faire de la frênette"
 }
 ###
 # Update sequence
-PUT {{baseUrl}}/{{sequenceId}}
+PUT {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
 Content-Type: application/json
 
 {
-  "name": "Vin",
-  "level_id": 1,
-  "sequence_category_id": 4
+  "name": "Faire de la bière"
 }
 ###
 # Delete sequence

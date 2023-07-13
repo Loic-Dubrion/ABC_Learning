@@ -6,11 +6,11 @@ class SequenceController extends CoreController {
     super(sequenceDataMapper);
   }
 
-  // async getActivities(request, response) {
-  //   const { cardId } = request.params;
-  //   const results = await this.dataMapper.executeFunction('get_activities', cardId);
-  //   response.json(results);
-  // }
+  async getDetailSequence(request, response) {
+    const { id } = request.params;
+    const results = await this.dataMapper.executeFunction('get_sequence_detail', id);
+    response.json(results);
+  }
 }
 
 module.exports = new SequenceController();

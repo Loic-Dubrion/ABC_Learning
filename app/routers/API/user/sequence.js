@@ -6,10 +6,10 @@ const SequenceController = require('../../../controllers/API/SequenceController'
 const controllerHandler = require('../../../controllers/services/controllerHandler');
 
 //! Create
-// router.post(
-//   '/',
-//   controllerHandler((req, res) => SequenceController.create.bind(SequenceController)(req, res, 'create_sequence')),
-// );
+router.post(
+  '/',
+  controllerHandler((req, res) => SequenceController.create.bind(SequenceController)(req, res, 'create_sequence')),
+);
 
 //! Read
 router.get(
@@ -19,14 +19,14 @@ router.get(
 
 router.get(
   '/:id',
-  controllerHandler(SequenceController.getOneByPk.bind(SequenceController)),
+  controllerHandler(SequenceController.getDetailSequence.bind(SequenceController)),
 );
 
-// //! Update
-// router.put(
-//   '/:id',
-//   controllerHandler((req, res) => SequenceController.update.bind(SequenceController)(req, res, 'update_sequence')),
-// );
+//! Update
+router.put(
+  '/:id',
+  controllerHandler((req, res) => SequenceController.update.bind(SequenceController)(req, res, 'update_sequence')),
+);
 
 //! Delete
 router.delete(
