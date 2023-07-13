@@ -33,9 +33,7 @@ class CoreController {
   // Update
   async update(request, response, functionName) {
     const { id } = request.params;
-    console.log(id);
     const objData = request.body;
-    console.log(objData);
     const results = await this.dataMapper.executeFunction(functionName, id, objData);
     response.status(201).json(results);
   }

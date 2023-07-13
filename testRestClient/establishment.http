@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000/api/establishment/
+@establishmentId = 1
+
+### establishment ###
+# Read All establishment
+GET {{baseUrl}}/
+###
+# Read One establishment
+GET {{baseUrl}}/{{establishmentId}}/
+###
+# Create establishment
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "name": "La tanière du Castor"
+}
+###
+# Update establishment
+PUT {{baseUrl}}/{{establishmentId}}
+Content-Type: application/json
+
+{
+  "name": "Ti'Chou"
+}
+###
+# Delete establishment
+DELETE  {{baseUrl}}/{{establishmentId}}/
