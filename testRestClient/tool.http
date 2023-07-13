@@ -28,5 +28,14 @@ Content-Type: application/json
   "tool_category_id": 4
 }
 ###
+# Update Liaison Card_has_Tool
+PATCH {{baseUrl}}/{{toolId}}
+Content-Type: application/json
+
+{
+  "card_id": 1,
+  "tool_id": 25
+}
+###
 # Delete Tool
 DELETE  {{baseUrl}}/{{toolId}}/

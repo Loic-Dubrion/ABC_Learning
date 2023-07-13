@@ -28,6 +28,11 @@ router.put(
   controllerHandler((req, res) => ToolController.update.bind(ToolController)(req, res, 'update_tool')),
 );
 
+router.patch(
+  '/:id',
+  controllerHandler((req, res) => ToolController.create.bind(ToolController)(req, res, 'create_card_has_tool')),
+);
+
 //! Delete
 router.delete(
   '/:id',

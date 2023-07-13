@@ -38,4 +38,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Create alliance tool card
+CREATE OR REPLACE FUNCTION create_card_has_tool(json_data JSON)
+RETURNS TABLE (card_id INTEGER, tool_id INTEGER) AS
+$$
+DECLARE 
+    data JSONB := json_data::JSONB;
+BEGIN
+    RETURN QUERY
+    INSERT INTO card_has_tool (card_id, tool_id)
+    VALUES (
+        CAST(data->>'card_id' AS INTEGER),
+        CAST(data->>'tool_id' AS INTEGER)
+    )
+    RETURNING card_has_tool.card_id, card_has_tool.tool_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
 COMMIT;
