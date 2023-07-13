@@ -24,9 +24,9 @@ class CoreController {
     response.json(results);
   }
 
-  async getOneByField(request, response) {
-    const { field, value } = request.query;
-    const results = await this.dataMapper.findOneByField(field, value);
+  async getAllByField(request, response, field) {
+    const value = request.params.userId;
+    const results = await this.dataMapper.findAllByField(field, value);
     response.json(results);
   }
 

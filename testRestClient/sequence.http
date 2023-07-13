@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:3000/api/user/
+@sequenceId = 1
+@userId = 1
+
+### Sequence ###
+# Read All sequences
+GET {{baseUrl}}/{{userId}}/sequence/
+###
+# Read One sequence
+GET {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
+###
+# Create sequence
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "name": "Bière",
+  "level_id": 1,
+  "sequence_category_id": 4
+}
+###
+# Update sequence
+PUT {{baseUrl}}/{{sequenceId}}
+Content-Type: application/json
+
+{
+  "name": "Vin",
+  "level_id": 1,
+  "sequence_category_id": 4
+}
+###
+# Delete sequence
+DELETE  {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/

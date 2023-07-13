@@ -26,7 +26,7 @@ class CoreDataMapper {
     return results.rows[0];
   }
 
-  async findOneByField(field, value) {
+  async findAllByField(field, value) {
     const { tableName } = this.constructor;
     const query = {
       text: `SELECT * FROM "${tableName}" WHERE ${field} = $1`,
