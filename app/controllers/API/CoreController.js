@@ -1,3 +1,5 @@
+const Error404 = require('../../errors/Error404');
+
 /** Class representing an abstract core controller. */
 class CoreController {
   constructor(dataMapper) {
@@ -21,12 +23,18 @@ class CoreController {
   async getOneByPk(request, response) {
     const { id } = request.params;
     const results = await this.dataMapper.findByPk(id);
+    if (!results) {
+      throw new Error404('Not Found');
+    }
     response.json(results);
   }
 
   async getAllByField(request, response, field) {
     const value = request.params.userId;
     const results = await this.dataMapper.findAllByField(field, value);
+    if (!results) {
+      throw new Error404('Not Found');
+    }
     response.json(results);
   }
 

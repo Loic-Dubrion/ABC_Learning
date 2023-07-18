@@ -9,7 +9,7 @@ const controllerHandler = require('../../controllers/services/controllerHandler'
 //! Create
 router.post(
   '/',
-  controllerHandler((req, res) => establishmentController.create.bind(establishmentController)(req, res, 'create_session')),
+  controllerHandler((req, res) => establishmentController.create.bind(establishmentController)(req, res, 'create_establishment')),
 );
 
 //! Read
