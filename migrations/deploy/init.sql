@@ -88,15 +88,8 @@ CREATE TABLE "tool" (
 CREATE TABLE "card" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT UNIQUE NOT NULL,
+    "activities" TEXT[],
     "comments" TEXT NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-    "updated_at" TIMESTAMPTZ
-);
-
-CREATE TABLE "activity" (
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT[] NOT NULL,
-    "card_id" INTEGER REFERENCES "card"("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

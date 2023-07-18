@@ -22,7 +22,6 @@ SELECT * FROM
     "level",
     "tool_category",
     "tool",
-    "activity",
     "session",
     "card",
     "card_has_tool"

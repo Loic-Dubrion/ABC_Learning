@@ -126,14 +126,14 @@ INSERT INTO tool (name, tool_category_id, level_id)
   ('Documentation tool', 3, 2);
 
 -- Insertion into 'card' table
-INSERT INTO card (name, comments)
+INSERT INTO card (name, comments, activities)
   VALUES 
-  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos'),
-  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself'),
-  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher and/or from their peers'),
-  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught'),
-  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action.'),
-  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice');
+  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos', ARRAY['Ecouter l''enseignant, suivre des cours, des conférences', 'Consulter des documents, articles', 'Lire des ressources numériques, multimédia, des sites web']),
+  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself', ARRAY['Projets en petits groupes, suivre des cours, des conférences', 'Construction / élaboration d''une production commune', 'Discussion autour des productions de tiers']),
+  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher and/or from their peers', ARRAY['Communication', 'Groupes de discussion synchrones et asynchrones', 'Remue-méninges, nuages de mots']),
+  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught', ARRAY['Comparaison de textes', 'Recherche et évaluation d''informations et d''idées', 'Observations lors d''un TP ou sur le terrain']),
+  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action.', ARRAY['Faire des exercices, des tests formatifs', 'Laboratoires', 'Etude de cas']),
+  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice', ARRAY['Bilans, commentaires, compte-rendu', 'Rapports, mémoires', 'Prestations (performance)']);
 
 -- Insertion into 'session' table
 INSERT INTO session (name, sequence_id, card_id, tool_id, comments, time, is_face_to_face, is_group_work, equipment)
@@ -227,15 +227,6 @@ INSERT INTO card_has_tool (tool_id, card_id)
   (12, 6),
   (19, 6),
   (13, 6);
-
-INSERT INTO activity (name, card_id)
-  VALUES 
-  (ARRAY['Ecouter l''enseignant, suivre des cours, des conférences', 'Consulter des documents, articles', 'Lire des ressources numériques, multimédia, des sites web'], 1),
-  (ARRAY['Projets en petits groupes, suivre des cours, des conférences', 'Construction / élaboration d''une production commune', 'Discussion autour des productions de tiers'], 2),
-  (ARRAY['Communication', 'Groupes de discussion synchrones et asynchrones', 'Remue-méninges, nuages de mots'], 3),
-  (ARRAY['Comparaison de textes', 'Recherche et évaluation d''informations et d''idées', 'Observations lors d''un TP ou sur le terrain'], 4),
-  (ARRAY['Faire des exercices, des tests formatifs', 'Laboratoires', 'Etude de cas'], 5),
-  (ARRAY['Bilans, commentaires, compte-rendu', 'Rapports, mémoires', 'Prestations (performance)'], 6);
 
 -- Insertion into 'session' table
 INSERT INTO tool_category_has_card (tool_category_id, card_id)
