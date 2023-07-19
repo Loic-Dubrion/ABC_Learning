@@ -9,7 +9,7 @@ const controllerHandler = require('../../../controllers/services/controllerHandl
 // Create
 router.post(
   '/',
-  controllerHandler((req, res) => UserController.create.bind(UserController)(req, res, 'create_user')),
+  controllerHandler(UserController.addUser.bind(UserController)),
 );
 // Read
 router.get(

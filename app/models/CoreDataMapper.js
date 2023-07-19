@@ -30,10 +30,12 @@ class CoreDataMapper {
 
   async findAllByField(field, value) {
     const { tableName } = this.constructor;
+    console.log(tableName);
     const query = {
       text: `SELECT * FROM "${tableName}" WHERE ${field} = $1`,
       values: [value],
     };
+    console.log(query);
     const results = await client.query(query);
     return results.rows[0];
   }

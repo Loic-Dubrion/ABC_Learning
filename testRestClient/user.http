@@ -13,9 +13,9 @@ POST {{baseUrl}}/
 Content-Type: application/json
 
 {
-  "username": "Jean Bon",
-  "email": "jb@truc.com",
-  "password": "&Test1234",
+  "username": "JeanBon",
+  "email": "jb@tuc.com",
+  "password": "&Test123",
   "establishment_id": 2
 }
 ###
