@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000/api/user/
+@userId = 2
+
+### Session ###
+# Read All users
+GET {{baseUrl}}/
+###
+# Read One user
+GET {{baseUrl}}/{{userId}}/
+###
+# Create User
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "username": "Jean Bon",
+  "email": "jb@truc.com",
+  "password": "&Test1234",
+  "establishment_id": 2
+}
+###
+# Update User
+PUT {{baseUrl}}/{{userId}}
+Content-Type: application/json
+
+{
+  "password": "&Test1111"
+}
+###
+# Delete Tool
+DELETE  {{baseUrl}}/{{userId}}/

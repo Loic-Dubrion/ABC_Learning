@@ -4,17 +4,33 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 
 const UserController = require('../../../controllers/API/UserController');
+const controllerHandler = require('../../../controllers/services/controllerHandler');
 
 // Create
-// router.post('/', UserController.createUser);
-
+router.post(
+  '/',
+  controllerHandler((req, res) => UserController.create.bind(UserController)(req, res, 'create_user')),
+);
 // Read
-// router.get('/:userId', UserController.getUser);
+router.get(
+  '/',
+  controllerHandler(UserController.getAll.bind(UserController)),
+);
+
+router.get(
+  '/:id',
+  controllerHandler(UserController.getOneByPk.bind(UserController)),
+);
 
 // Update
-// router.put('/:userId', UserController.updateUser);
+router.put(
+  '/:id',
+  controllerHandler((req, res) => UserController.update.bind(UserController)(req, res, 'update_user')),
+);
 
 // Delete
-// router.delete('/:userId', UserController.deleteUser);
-
+router.delete(
+  '/:id',
+  controllerHandler(UserController.delete.bind(UserController)),
+);
 module.exports = router;
