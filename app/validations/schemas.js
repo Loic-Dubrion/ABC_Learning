@@ -7,6 +7,7 @@ const createUserBody = Joi.object({
   username: Joi.string().max(50).required(),
   email: Joi.string().pattern(/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/).required(),
   password: Joi.string().pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/).required(),
+  establishment_id: Joi.number(),
 }).required();
 
 const updateUserBody = Joi.object({
@@ -15,6 +16,7 @@ const updateUserBody = Joi.object({
   username: Joi.string().max(50),
   email: Joi.string().pattern(/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/),
   password: Joi.string().pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/),
+  establishment_id: Joi.number(),
 }).or('username', 'email', 'password', 'old_password').required();
 
 const deleteUserBody = Joi.object({

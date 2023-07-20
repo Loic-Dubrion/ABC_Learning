@@ -6,7 +6,7 @@ const jwtController = require('../../controllers/API/JwtController');
 
 router.post('/in', controllerHandler(jwtController.logUser));
 
-// router.post('/refresh-token', controllerHandler(jwtController.refreshToken));
+router.post('/refresh-token', controllerHandler(jwtController.refreshToken));
 
 // router.post('/reset-password', controllerHandler(jwtController.resetPassword));
 
