@@ -55,6 +55,7 @@ class CoreDataMapper {
       text: `SELECT * FROM ${functionName}(${params.map((_, i) => `$${i + 1}`).join(', ')})`,
       values: params,
     };
+    console.log(preparedQuery);
     const results = await client.query(preparedQuery);
     return results.rows;
   }

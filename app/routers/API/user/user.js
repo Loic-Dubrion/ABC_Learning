@@ -19,7 +19,7 @@ router.get(
 
 router.get(
   '/:id',
-  controllerHandler(UserController.getOneByPk.bind(UserController)),
+  controllerHandler(UserController.getUserInfo.bind(UserController)),
 );
 
 // Update

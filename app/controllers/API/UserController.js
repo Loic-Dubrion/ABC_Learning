@@ -13,6 +13,12 @@ class UserController extends CoreController {
     super(userDataMapper);
   }
 
+  async getUserInfo(request, response) {
+    const { id } = request.params;
+    const results = await this.dataMapper.executeFunction('get_user_info', id);
+    response.json(results);
+  }
+
   async addUser(request, response) {
     const dataUser = request.body;
     // check for an identical user.

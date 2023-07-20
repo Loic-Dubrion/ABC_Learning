@@ -8,3 +8,5 @@ f_crud_tool 2023-07-13T06:44:12Z Loic Dubrion <loic-dubrion@hotmail.fr> # tool f
 f_crud_sequence 2023-07-13T13:32:56Z Loic Dubrion <loic-dubrion@hotmail.fr> # functions for sequence table
 f_crud_establishment 2023-07-13T15:29:35Z Loic Dubrion <loic-dubrion@hotmail.fr> # function for establishment router
 f_crud_user 2023-07-19T07:38:20Z Loic Dubrion <loic-dubrion@hotmail.fr> # function for user crud
+f_rbac 2023-07-20T15:19:56Z Loic Dubrion <loic-dubrion@hotmail.fr> # get user role and permission
+refresh_token 2023-07-20T15:41:41Z Loic Dubrion <loic-dubrion@hotmail.fr> # alter table for refresh token

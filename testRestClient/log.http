@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:3000/api
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
+
+# @name login
+POST {{baseUrl}}/log/in
+content-type: application/x-www-form-urlencoded
+
+username=JeanBonnot&password=%26Test123

@@ -9,28 +9,11 @@ const client = require('../../services/clientDB/clientPostgres');
 
 const { Error400, Error403 } = require('../../errors');
 
-/** Class representing a user controller. */
 class JwtController extends CoreController {
-  static dataMapper = userDataMapper;
-
-  /**
-  * Create a user controller.
-  *
-  * @augments CoreController
-  */
   constructor() {
-    super();
+    super(userDataMapper);
   }
 
-  /**
-   * Controller function for authenticating a user and generating access and refresh tokens.
-   * @param {string} request.body.username - The user's username.
-   * @param {string} request.body.password - The user's password.
-   * @param {object} response - The response object.
-   * @returns {Promise} A promise that resolves to the response containing
-   * the access and refresh tokens.
-   * @throws {Error403} - Forbidden error if the user authentication fails.
-   */
   async logUser(request, response) {
     const { username, password } = request.body;
 
@@ -78,15 +61,6 @@ class JwtController extends CoreController {
     }
   }
 
-  /**
-   * Controller function for resetting a user's password.
-   * @param {object} request.body - The request body.
-   * @param {string} request.body.email - The user's email.
-   * @param {object} response - The response object.
-   * @returns {Promise} A promise that resolves to the response indicating
-   * the success of the password reset email.
-   * @throws {Error400} - Bad request error if the email is not valid.
-   */
   async resetPassword(request, response) {
     const { email } = request.body;
 

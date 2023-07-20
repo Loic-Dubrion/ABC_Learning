@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3000/api/user/
-@userId = 2
+@userId = 1
 
 ### Session ###
 # Read All users
@@ -13,8 +13,8 @@ POST {{baseUrl}}/
 Content-Type: application/json
 
 {
-  "username": "JeanBon",
-  "email": "jb@tuc.com",
+  "username": "JeanBonnot",
+  "email": "jb@truc.fr",
   "password": "&Test123",
   "establishment_id": 2
 }
