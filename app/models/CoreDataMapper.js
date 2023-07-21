@@ -18,24 +18,20 @@ class CoreDataMapper {
 
   async findByPk(id) {
     const { tableName } = this.constructor;
-    console.log(tableName, id);
     const preparedQuery = {
       text: `SELECT * FROM "${tableName}" WHERE id=$1`,
       values: [id],
     };
-    console.log(preparedQuery);
     const results = await client.query(preparedQuery);
     return results.rows[0];
   }
 
   async findAllByField(field, value) {
     const { tableName } = this.constructor;
-    console.log(tableName);
     const query = {
       text: `SELECT * FROM "${tableName}" WHERE ${field} = $1`,
       values: [value],
     };
-    console.log(query);
     const results = await client.query(query);
     return results.rows[0];
   }
@@ -55,7 +51,6 @@ class CoreDataMapper {
       text: `SELECT * FROM ${functionName}(${params.map((_, i) => `$${i + 1}`).join(', ')})`,
       values: params,
     };
-    console.log(preparedQuery);
     const results = await client.query(preparedQuery);
     return results.rows;
   }

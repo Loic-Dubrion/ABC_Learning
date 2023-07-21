@@ -15,7 +15,6 @@ class UserController extends CoreController {
 
   async getUserInfo(request, response) {
     const { userId } = request.params;
-    console.log(userId);
     const results = await this.dataMapper.executeFunction('get_user_info', userId);
     response.json(results);
   }
