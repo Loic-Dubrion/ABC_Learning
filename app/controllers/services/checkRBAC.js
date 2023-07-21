@@ -1,47 +1,53 @@
-/**
- * @module RBAC
- */
-
 // Import environment variables
 require('dotenv').config();
 
 // Import libraries
 const jwt = require('jsonwebtoken');
-const auth = require('./jwtService');
+// const auth = require('./jwtService');
 
 // Import errors
 const { Error401, Error403 } = require('../../errors');
 
-const checkUserId = async (req, res, next) => {
+const checkRole = async (req, res, next) => {
   try {
-    const user = await auth.getAccessTokenUser(req);
-    if (!user || user.id !== Number(req.params.userId)) {
-      throw new Error403('Forbidden');
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      throw new Error401('No token provided');
     }
-    return next();
-  } catch (error) {
-    return next(error);
-  }
-};
-
-const checkRole = (roleNeeded) => async (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  if (!token) {
-    throw new Error401('No token provided');
-  }
-
-  try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const user = decodedToken.data; // Get user data from the decoded token
-    if (!user.roles || !user.roles.includes(roleNeeded)) {
-      throw new Error403('Forbidden');
-    }
+    const user = decodedToken.data;
 
-    return next();
+    // If user has 'admin' role, do not check the user ID.
+    if (user.roles.includes('admin')) {
+      next();
+    } else if (!user || user.id !== Number(req.params.userId)) {
+      throw new Error403('Forbidden');
+    } else {
+      next();
+    }
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
+
+// const checkRole = (roleNeeded) => async (req, res, next) => {
+//   const token = req.headers.authorization?.split(' ')[1];
+//   if (!token) {
+//     throw new Error401('No token provided');
+//   }
+
+//   try {
+//     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+//     const user = decodedToken.data; // Get user data from the decoded token
+//     if (!user.roles || !user.roles.includes(roleNeeded)) {
+//       throw new Error403('Forbidden');
+//     }
+
+//     return next();
+//   } catch (error) {
+//     return next(error);
+//   }
+// };
 
 const checkPermission = (permissionNeeded) => async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
@@ -66,5 +72,5 @@ const checkPermission = (permissionNeeded) => async (req, res, next) => {
 module.exports = {
   checkRole,
   checkPermission,
-  checkUserId,
+  // checkUserId,
 };

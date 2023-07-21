@@ -1,17 +1,28 @@
-@baseUrl = http://localhost:3000/api/user/{{userId}}/session
-@userId = 1
-@sessionId = 1
+@baseUrl = http://localhost:3000/api/
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
+@userId = 5
+@sessionId = 2
+
+# @name login
+POST {{baseUrl}}/log/in
+content-type: application/x-www-form-urlencoded
+
+username=JeanBonnot&password=%26Test123
 
 ### Session ###
 # Read Session
-GET {{baseUrl}}/{{sessionId}}
+GET {{baseUrl}}/user/{{userId}}/session/{{sessionId}}
+Authorization: Bearer {{accessToken}}
+
 ###
 # Create Session
-POST {{baseUrl}}/
+POST {{baseUrl}}/user/{{userId}}/session
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Conslider les acquis",
+  "name": "Consolider les acquis",
   "sequence_id": 1,
   "card_id": 6,
   "tool_id": 19,
@@ -23,7 +34,8 @@ Content-Type: application/json
 }
 ###
 # Update Session
-PUT {{baseUrl}}/{{sessionId}}
+PUT {{baseUrl}}/user/{{userId}}/session/{{sessionId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -39,4 +51,5 @@ Content-Type: application/json
 }
 ###
 # Delete Session
-DELETE {{baseUrl}}/{{sessionId}}
+DELETE {{baseUrl}}/user/{{userId}}/session/{{sessionId}}
+Authorization: Bearer {{accessToken}}

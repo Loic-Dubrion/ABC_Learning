@@ -3,7 +3,7 @@
 BEGIN;
 
 -- Read One sequence
-CREATE OR REPLACE FUNCTION get_sequence_detail(id_query INT)
+CREATE OR REPLACE FUNCTION get_sequence_detail(id_query INT, user_id_query INT)
 RETURNS TABLE (
   sequence_id INT,
   sequence_name TEXT,
@@ -31,7 +31,7 @@ BEGIN
     WHERE ses.sequence_id = seq.id
   ) AS sessions
   FROM sequence seq
-  WHERE seq.id = id_query;
+  WHERE seq.id = id_query AND seq.user_id = user_id_query;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -43,9 +43,10 @@ DECLARE
     data JSONB := json_data::JSONB;
 BEGIN
     RETURN QUERY
-    INSERT INTO sequence (name)
+    INSERT INTO sequence (name, user_id)
     VALUES (
-        data->>'name'
+        data->>'name',
+        CAST(data->>'user_id' AS INTEGER)
         )
     RETURNING sequence.id, sequence.name;
 END;

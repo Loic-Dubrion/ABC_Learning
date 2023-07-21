@@ -8,8 +8,8 @@ RETURNS TABLE (id INTEGER, username TEXT) AS
 $$
 DECLARE 
     data JSONB := json_data::JSONB;
+    new_user_id INTEGER;
 BEGIN
-    RETURN QUERY
     INSERT INTO "user" (username, email, password, establishment_id)
     VALUES (
         data->>'username',
@@ -17,9 +17,15 @@ BEGIN
         data->>'password',
         CAST(data->>'establishment_id' AS INTEGER)
     )
-    RETURNING "user".id, "user".username;
+    RETURNING "user".id INTO new_user_id;
+
+    INSERT INTO user_has_role (user_id, role_id) 
+    VALUES (new_user_id, 1);
+
+    RETURN QUERY SELECT new_user_id AS id, data->>'username' AS username;
 END;
 $$ LANGUAGE plpgsql;
+
 
 -- Read user
 CREATE OR REPLACE FUNCTION get_user_info(id_user INT)

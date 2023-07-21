@@ -101,7 +101,7 @@ const auth = {
     const token = auth.getAccessJWT(request);
     const decodedToken = jwt.verify(token, JWT_SECRET, { ignoreExpiration: true });
 
-    const user = await UserDataMapper.findOneByField('username', decodedToken.data.username);
+    const user = await UserDataMapper.findAllByField('username', decodedToken.data.username);
 
     if (!user) {
       throw new Error401('User not found');
@@ -135,7 +135,7 @@ const auth = {
       return response.status(401).json({ error: 'token invalid' });
     }
 
-    const foundUser = await UserDataMapper.findOneByField('id', decodedRefreshToken.data.id);
+    const foundUser = await UserDataMapper.findAllByField('id', decodedRefreshToken.data.id);
 
     if (foundUser) {
       if (foundUser.username === user.username && refreshToken === foundUser.refresh_token) {

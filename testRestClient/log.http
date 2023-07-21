@@ -1,9 +1,39 @@
 @baseUrl = http://localhost:3000/api
 @accessToken = {{login.response.body.$.data.accessToken}}
 @refreshToken = {{login.response.body.$.data.refreshToken}}
+@userId = 2
 
 # @name login
 POST {{baseUrl}}/log/in
 content-type: application/x-www-form-urlencoded
 
 username=JeanBonnot&password=%26Test123
+
+###
+PUT {{baseUrl}}/user/{{userId}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "username": "Oscar Rot",
+  "old_password": "&Test123"
+}
+
+### Marche
+GET {{baseUrl}}/user/{{userId}}
+Authorization: Bearer {{accessToken}}
+
+###
+POST {{baseUrl}}/log/refresh-token
+Authorization: Bearer {{accessToken}}
+content-type: application/x-www-form-urlencoded
+
+refreshToken={{refreshToken}}
+
+###
+POST {{baseUrl}}/log/reset-password
+content-type: application/json
+
+{
+  "email":"test@test.com"
+}

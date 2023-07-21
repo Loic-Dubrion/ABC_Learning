@@ -7,8 +7,9 @@ class SequenceController extends CoreController {
   }
 
   async getDetailSequence(request, response) {
-    const { id } = request.params;
-    const results = await this.dataMapper.executeFunction('get_sequence_detail', id);
+    const { id, userId } = request.params;
+    console.log(id, userId);
+    const results = await this.dataMapper.executeFunction('get_sequence_detail', id, userId);
     response.json(results);
   }
 }

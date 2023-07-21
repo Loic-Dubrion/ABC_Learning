@@ -23,7 +23,7 @@ class CoreController {
 
   async getOneByPk(request, response) {
     const { id } = request.params;
-    console.log(typeof (id));
+    console.log(id);
     const results = await this.dataMapper.findByPk(id);
     if (!results) {
       throw new Error404('Not Found');
@@ -33,6 +33,7 @@ class CoreController {
 
   async getAllByField(request, response, field) {
     const value = request.params.userId;
+    console.log(value);
     const results = await this.dataMapper.findAllByField(field, value);
     if (!results) {
       throw new Error404('Not Found');

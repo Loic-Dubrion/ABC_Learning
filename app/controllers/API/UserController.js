@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const CoreController = require('./CoreController');
 const userDataMapper = require('../../models/UserDataMapper');
 const Error400 = require('../../errors/Error400');
-// const auth = require('../services/jwtService');
+const auth = require('../services/jwtService');
 
 /** Class representing a user controller. */
 class UserController extends CoreController {
@@ -14,8 +14,9 @@ class UserController extends CoreController {
   }
 
   async getUserInfo(request, response) {
-    const { id } = request.params;
-    const results = await this.dataMapper.executeFunction('get_user_info', id);
+    const { userId } = request.params;
+    console.log(userId);
+    const results = await this.dataMapper.executeFunction('get_user_info', userId);
     response.json(results);
   }
 
@@ -42,8 +43,7 @@ class UserController extends CoreController {
   async updateUser(request, response) {
     const { userId } = request.params;
     const { ...objData } = request.body;
-
-    let user = await this.dataMapper.findOneByField('id', userId);
+    let user = await this.dataMapper.findAllByField('id', userId);
     const isGoodPassword = await bcrypt.compare(objData.old_password, user.password);
     if (!isGoodPassword) {
       throw new Error400('Password invalid');
@@ -61,16 +61,16 @@ class UserController extends CoreController {
     user = { ...user, ...objData };
 
     // Get roles and permissions of the user
-    // const rolesAndPermissions = await auth.getUserRolesAndPermissions(userId);
-    // user = { ...user, ...rolesAndPermissions };
+    const rolesAndPermissions = await auth.getUserRolesAndPermissions(userId);
+    user = { ...user, ...rolesAndPermissions };
 
     // generate access and refresh tokens after user details update
-    // const accessToken = auth.generateAccessToken(request.ip, user);
-    // const refreshToken = await auth.generateRefreshToken(user);
+    const accessToken = auth.generateAccessToken(request.ip, user);
+    const refreshToken = await auth.generateRefreshToken(user);
 
     response.json({
-      update_user: results[0].update_user,
-      // tokens: { accessToken, refreshToken },
+      results,
+      tokens: { accessToken, refreshToken },
     });
   }
 }

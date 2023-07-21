@@ -1,24 +1,39 @@
-@baseUrl = http://localhost:3000/api/user/
-@sequenceId = 1
-@userId = 1
+@baseUrl = http://localhost:3000/api/
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
+@sequenceId = 3
+@userId = 5
+
+# @name login
+POST {{baseUrl}}/log/in
+content-type: application/x-www-form-urlencoded
+
+username=JeanBonnot&password=%26Test123
 
 ### Sequence ###
 # Read All sequences
-GET {{baseUrl}}/{{userId}}/sequence/
+GET {{baseUrl}}/user/{{userId}}/sequence/
+Authorization: Bearer {{accessToken}}
+
 ###
 # Read One sequence
-GET {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
+GET {{baseUrl}}/user/{{userId}}/sequence/{{sequenceId}}/
+Authorization: Bearer {{accessToken}}
+
 ###
 # Create sequence
-POST {{baseUrl}}/{{userId}}/sequence/
+POST {{baseUrl}}/user/{{userId}}/sequence/
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Faire de la frênette"
+  "name": "Faire de la frênette",
+  "user_id": {{userId}}
 }
 ###
 # Update sequence
-PUT {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
+PUT {{baseUrl}}/user/{{userId}}/sequence/{{sequenceId}}/
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -26,4 +41,5 @@ Content-Type: application/json
 }
 ###
 # Delete sequence
-DELETE  {{baseUrl}}/{{userId}}/sequence/{{sequenceId}}/
+DELETE  {{baseUrl}}/user/{{userId}}/sequence/{{sequenceId}}/
+Authorization: Bearer {{accessToken}}

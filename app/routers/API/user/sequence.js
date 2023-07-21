@@ -14,7 +14,7 @@ router.post(
 //! Read
 router.get(
   '/',
-  controllerHandler((req, res) => SequenceController.getAllByField.bind(SequenceController)(req, res, 'id')),
+  controllerHandler((req, res) => SequenceController.getAllByField.bind(SequenceController)(req, res, 'user_id')),
 );
 
 router.get(

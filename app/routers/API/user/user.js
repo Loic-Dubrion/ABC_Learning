@@ -13,11 +13,11 @@ const {
   deleteUserBody,
 } = require('../../../validations/schemas');
 
-const { checkUserId } = require('../../../controllers/services/checkRBAC');
 const { authorize } = require('../../../controllers/services/jwtService');
+const { checkRole } = require('../../../controllers/services/checkRBAC');
 
 router.use('/:userId', authorize);
-router.use('/:userId', checkUserId);
+router.use('/:userId', checkRole);
 
 // Create
 router.post(
@@ -32,20 +32,20 @@ router.get(
 );
 
 router.get(
-  '/:id',
+  '/:userId',
   controllerHandler(UserController.getUserInfo.bind(UserController)),
 );
 
 // Update
 router.put(
-  '/:id',
+  '/:userId',
   validate(updateUserBody, 'body'),
-  controllerHandler((req, res) => UserController.update.bind(UserController)(req, res, 'update_user')),
+  controllerHandler(UserController.updateUser.bind(UserController)),
 );
 
 // Delete
 router.delete(
-  '/:id',
+  '/:userId',
   validate(deleteUserBody, 'body'),
   controllerHandler(UserController.delete.bind(UserController)),
 );
