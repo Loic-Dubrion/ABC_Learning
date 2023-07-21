@@ -50,6 +50,7 @@ const checkRole = async (req, res, next) => {
 // };
 
 const checkPermission = (permissionNeeded) => async (req, res, next) => {
+  console.log('check permission');
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
     throw new Error401('No token provided');
@@ -58,6 +59,7 @@ const checkPermission = (permissionNeeded) => async (req, res, next) => {
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const user = decodedToken.data;
+    console.log(user);
 
     if (!user.permissions || !user.permissions.includes(permissionNeeded)) {
       throw new Error403('Forbidden');

@@ -24,7 +24,7 @@ INSERT INTO role (name)
 -- Insertion into 'authorisation' table
 INSERT INTO authorisation (name)
   VALUES
-  ('create_lesson'),
+  ('crud_tool'),
   ('crud_activity'),
   ('crud_establishment');
 

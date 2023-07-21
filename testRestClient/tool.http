@@ -1,15 +1,26 @@
-@baseUrl = http://localhost:3000/api/user/tool
+@baseUrl = http://localhost:3000/api/
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
 @toolId = 2
+
+# @name login
+POST {{baseUrl}}/log/in
+content-type: application/x-www-form-urlencoded
+
+username=JeanBonnot&password=%26Test123
 
 ### Session ###
 # Read All tools
-GET {{baseUrl}}/
+GET {{baseUrl}}/user/tool/
+Authorization: Bearer {{accessToken}}
 ###
 # Read One tools
-GET {{baseUrl}}/{{toolId}}/
+GET {{baseUrl}}/user/tool/{{toolId}}/
+Authorization: Bearer {{accessToken}}
 ###
 # Create Tool
-POST {{baseUrl}}/
+POST {{baseUrl}}/user/tool/
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -19,7 +30,8 @@ Content-Type: application/json
 }
 ###
 # Update Tool
-PUT {{baseUrl}}/{{toolId}}
+PUT {{baseUrl}}/user/tool/{{toolId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -29,7 +41,8 @@ Content-Type: application/json
 }
 ###
 # Update Liaison Card_has_Tool
-PATCH {{baseUrl}}/{{toolId}}
+PATCH {{baseUrl}}/user/tool/{{toolId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -38,4 +51,5 @@ Content-Type: application/json
 }
 ###
 # Delete Tool
-DELETE  {{baseUrl}}/{{toolId}}/
+DELETE  {{baseUrl}}/user/tool/{{toolId}}/
+Authorization: Bearer {{accessToken}}

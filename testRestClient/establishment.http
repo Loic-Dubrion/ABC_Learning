@@ -1,15 +1,26 @@
-@baseUrl = http://localhost:3000/api/establishment/
+@baseUrl = http://localhost:3000/api/
 @establishmentId = 1
+@accessToken = {{login.response.body.$.data.accessToken}}
+@refreshToken = {{login.response.body.$.data.refreshToken}}
+
+# @name login
+POST {{baseUrl}}/log/in
+content-type: application/x-www-form-urlencoded
+
+username=JeanBonnot&password=%26Test123
 
 ### establishment ###
 # Read All establishment
-GET {{baseUrl}}/
+GET {{baseUrl}}/establishment/
+Authorization: Bearer {{accessToken}}
 ###
 # Read One establishment
-GET {{baseUrl}}/{{establishmentId}}/
+GET {{baseUrl}}/establishment/{{establishmentId}}/
+Authorization: Bearer {{accessToken}}
 ###
 # Create establishment
-POST {{baseUrl}}/
+POST {{baseUrl}}/establishment/
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -17,7 +28,8 @@ Content-Type: application/json
 }
 ###
 # Update establishment
-PUT {{baseUrl}}/{{establishmentId}}
+PUT {{baseUrl}}/establishment/{{establishmentId}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
@@ -25,4 +37,5 @@ Content-Type: application/json
 }
 ###
 # Delete establishment
-DELETE  {{baseUrl}}/{{establishmentId}}/
+DELETE  {{baseUrl}}/establishment/{{establishmentId}}/
+Authorization: Bearer {{accessToken}}

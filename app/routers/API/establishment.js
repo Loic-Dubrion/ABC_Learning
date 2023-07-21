@@ -6,6 +6,11 @@ const router = express.Router();
 const establishmentController = require('../../controllers/API/EstablishmentController');
 const controllerHandler = require('../../controllers/services/controllerHandler');
 
+const { checkPermission } = require('../../controllers/services/checkRBAC');
+const { authorize } = require('../../controllers/services/jwtService');
+
+router.use('/', authorize, checkPermission('crud_establishment'));
+
 //! Create
 router.post(
   '/',

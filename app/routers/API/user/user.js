@@ -13,12 +13,6 @@ const {
   deleteUserBody,
 } = require('../../../validations/schemas');
 
-const { authorize } = require('../../../controllers/services/jwtService');
-const { checkRole } = require('../../../controllers/services/checkRBAC');
-
-router.use('/:userId', authorize);
-router.use('/:userId', checkRole);
-
 // Create
 router.post(
   '/',
