@@ -1,75 +1,53 @@
 # TODO List
 
-- [X] MCD
-- [X] MLD
-- [X] Dictionnaire de données
-- [X] MPD
-- [X] Init Project
-- [X] Install dependencies
-- [X] Configuration work environment
-- [X] Init sqitch
-- [X] Create database
-- [X] Seeding database
-  - [X] script seeding and deploy
-- [X] Create server
-- [X] Create CoreController
-- [X] Create CoreDataMapper
-- [X] Create Class Error
-- [X] Create controllerHandler
-- [X] Create apiHandler
+- Setting
+  - [X] MCD
+  - [X] MLD
+  - [X] Dictionnaire de données
+  - [X] MPD
+  - [X] Init Project
+  - [X] Install dependencies
+  - [X] Configuration work environment
+  - [X] Init sqitch
+  - [X] Create database
+  - [X] Seeding database
+    - [X] script seeding and deploy
+  - [X] Create server
+  - [X] Create CoreController
+  - [X] Create CoreDataMapper
+  - [X] Create Class Error
+  - [X] Create controllerHandler
+  - [X] Create apiHandler
 
-
-
-- [X] Create Views and Functions SQL
-- [X] Create models
-- [X] Test all models
-  - [X] External API
-  - [ ] Admin
-  - [ ] User
-  - [ ] Oworld
-- [X] Create all controllers
-  - [X] External API
-  - [X] Admin
-  - [X] User
+- CRUD
+  - [X] Card => read for display (card + comments + tools_category and tools)
+  - [X] Tool => CRUD (link with categories, card and level)
   - [X] Session
-  - [X] Oworld
-- [X] Create all routers
-  - [X] External API
-  - [X] Admin
+  - [X] Sequence
+  - [X] Establishment
   - [X] User
-  - [X] Log
-  - [X] Oworld
-- [X] Test all routes
-  - [X] External API
-  - [X] Admin
-  - [ ] User
-  - [X] Oworld
 
-- [X] Create doc with Swagger and JSDoc
+- Role and permission
+  - [X] User => CRUD session, sequence, user
+    - [X] only their own
+  - [X] Admin => see users, CRUD all users and their sequences
+  - [X] Super_admin => CRUD establishment
 
-## Sprint 2 - Security
+- Security
+  - [X] Error Management
+  - [X] Cors
+  - [X] Role management (RBAC)
+  - [X] Bcrypt
+  - [X] Sanitizer
+  - [X] Validate with Joi
+  - [X] Setting up logging (Bunyan)
+  - [X] Setting up a backup of the database
+    - [X] Schedule the backup to be sent by email
+  - [X] Clean code and add comment
+  - [X] Test with Jest
+  - [X] JWT
 
-- [X] Error Management
-- [X] Role management (RBAC)
-- [X] Bcrypt
-- [X] Regex on url params
-- [X] Sanitizer
-- [X] Validate with Joi
-- [X] Setting up logging (Bunyan)
-- [X] Setting up a backup of the database
-  - [X] Schedule the backup to be sent by email
-- [X] Clean code and add comment
-- [X] Cache management
-- [X] Monitoring on external request
-- [X] JWT
-- [X] Deployment
-
-## Finishes
-
-- [X] Prevent insertion of a null value in favourites
-- [X] Prevent duplicates from being inserted into bookmarks too
-- [X] Modify the return values of the bookmark insertion and deletion functions
-- [X] Switch planet table to redis
-- [X] Refacto redis
-- [X] Refacto Jwt
-- [X] Check JSDoc and Swagger
+- V2
+  - [ ] Route for adding roles (super_admin must be able to give admin roles)
+  - [ ] Linking tools to an establishment
+  - [ ] Link sessions to a user
