@@ -4,13 +4,13 @@ const logger = require('./logger');
 const swaggerOptions = {
   servers: [
     {
-      url: `http://${process.env.PGHOST}:${process.env.PORT}` || 'http://localhost:3000',
+      url: `http://${process.env.PGHOST}:${process.env.PORT}/api/` || 'http://localhost:3000/api/',
     },
   ],
   info: {
     version: '1.0',
-    title: 'O\'World API',
-    description: 'API with data on every country in the world. With multiple sources (World Bank, Rest country, Ninja API, ,RadioBrowser)',
+    title: 'ABC Learning API',
+    description: 'API for ABC_learning project',
   },
   baseDir: `${__dirname}/app`,
   filesPattern: './**/*.js',
