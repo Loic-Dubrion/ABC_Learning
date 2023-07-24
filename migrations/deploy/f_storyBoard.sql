@@ -6,6 +6,7 @@ BEGIN;
 CREATE OR REPLACE FUNCTION get_activities(id_card INTEGER)
 RETURNS JSON
 LANGUAGE SQL
+STABLE
 AS $$
     SELECT json_build_object(
         'card_id', c.id,
