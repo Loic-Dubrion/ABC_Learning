@@ -4,7 +4,6 @@ const {
   Error403,
   Error404,
   Error409,
-  Error503,
 } = require('./index');
 const sendEmail = require('../services/mailer/sender');
 const logger = require('../services/logger');
@@ -25,19 +24,6 @@ function apiErrorHandler(err, __req, res) {
       status: 'error',
       message: err.message,
     });
-  } else if (err instanceof Error503) { // Service Unavailable error
-    res.status(err.httpStatusCode).json({
-      httpCode: err.httpStatusCode,
-      status: 'error',
-      message: err.message,
-    });
-    // Send an email to admin if an external api stops responding
-    sendEmail(
-      'Service Unavailable Error 503',
-      `Error occurred at: ${new Date().toISOString()}\n${err.message}`,
-      null, // no attachment
-      null, // no attachment
-    );
   } else {
     // Handle other types of errors with a generic 500 Internal Server Error response
     res.status(500).json({
