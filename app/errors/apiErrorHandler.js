@@ -5,7 +5,6 @@ const {
   Error404,
   Error409,
 } = require('./index');
-const sendEmail = require('../services/mailer/sender');
 const logger = require('../services/logger');
 
 function apiErrorHandler(err, __req, res) {
