@@ -26,15 +26,19 @@ class CoreDataMapper {
     return results.rows[0];
   }
 
-  async findAllByField(field, value) {
+  async findAllByField(field, value, returnSingle = true) {
     const { tableName } = this.constructor;
     const query = {
       text: `SELECT * FROM "${tableName}" WHERE ${field} = $1`,
       values: [value],
     };
     const results = await client.query(query);
-    return results.rows[0];
+    if (returnSingle) {
+      return results.rows[0];
+    }
+    return results.rows;
   }
+  
 
   async delete(id) {
     const preparedQuery = {
@@ -51,6 +55,7 @@ class CoreDataMapper {
       text: `SELECT * FROM ${functionName}(${params.map((_, i) => `$${i + 1}`).join(', ')})`,
       values: params,
     };
+    console.log(preparedQuery)
     const results = await client.query(preparedQuery);
     return results.rows;
   }

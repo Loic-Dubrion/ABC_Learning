@@ -20,7 +20,7 @@ const app = express();
 
 // CORS setup
 const corsOptions = {
-  origin: process.env.CORS_DOMAINS ?? '*',
+  origin: '*',
 };
 
 // Use bodySanitizer for all requests

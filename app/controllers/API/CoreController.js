@@ -31,10 +31,11 @@ class CoreController {
 
   async getAllByField(request, response, field) {
     const value = request.params.userId;
-    const results = await this.dataMapper.findAllByField(field, value);
+    const results = await this.dataMapper.findAllByField(field, value, false);
     if (!results) {
       throw new Error404('Not Found');
     }
+    console.log("controller: ", value, field);
     response.json(results);
   }
 

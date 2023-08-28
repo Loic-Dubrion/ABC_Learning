@@ -1,8 +1,8 @@
 @baseUrl = http://localhost:3000/api/
 @accessToken = {{login.response.body.$.data.accessToken}}
 @refreshToken = {{login.response.body.$.data.refreshToken}}
-@sequenceId = 1
-@userId = 1
+@sequenceId = 3
+@userId = 5
 
 # @name login
 POST {{baseUrl}}/log/in
@@ -27,7 +27,7 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Faire de la frênette",
+  "name": "Faire des lasagnes",
   "user_id": {{userId}}
 }
 ###

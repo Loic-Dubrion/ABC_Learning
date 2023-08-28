@@ -11,29 +11,41 @@ RETURNS TABLE (
 ) AS $$
 BEGIN
   RETURN QUERY
-  SELECT seq.id AS sequence_id, seq.name AS sequence_name, (
-    SELECT json_agg(json_build_object(
-      'session_id', ses.id,
-      'session_name', ses.name,
-      'card_name', c.name,
-      'tool_name', t.name,
-      'comments', ses.comments,
-      'time', ses.time,
-      'is_face_to_face', ses.is_face_to_face,
-      'is_group_work', ses.is_group_work,
-      'equipment', ses.equipment,
-      'level_name', l.name
-    ) ORDER BY ses.id)
+  WITH SessionDetails AS (
+    SELECT
+      ses.sequence_id,
+      json_agg(
+        json_build_object(
+          'session_id', ses.id,
+          'session_name', ses.name,
+          'card_name', c.name,
+          'tool_name', t.name,
+          'comments', ses.comments,
+          'time', ses.time,
+          'is_face_to_face', ses.is_face_to_face,
+          'is_group_work', ses.is_group_work,
+          'equipment', ses.equipment,
+          'level_name', l.name
+        )
+      ORDER BY ses.id) AS session_data
     FROM session ses
     JOIN card c ON ses.card_id = c.id
     JOIN tool t ON ses.tool_id = t.id
     JOIN level l ON t.level_id = l.id
-    WHERE ses.sequence_id = seq.id
-  ) AS sessions
+    GROUP BY ses.sequence_id
+  )
+  
+  SELECT
+    seq.id AS sequence_id,
+    seq.name AS sequence_name,
+    sd.session_data AS sessions
   FROM sequence seq
+  JOIN SessionDetails sd ON sd.sequence_id = seq.id
   WHERE seq.id = id_query AND seq.user_id = user_id_query;
+
 END;
 $$ LANGUAGE plpgsql;
+
 
 -- Create Sequence
 CREATE OR REPLACE FUNCTION create_sequence(json_data JSON)

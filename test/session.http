@@ -22,8 +22,8 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Consolider les acquis",
-  "sequence_id": 1,
+  "name": "Consolidr les acquis",
+  "sequence_id": 3,
   "card_id": 6,
   "tool_id": 19,
   "comments": "Par groupe de 4 max, mélanger les niveaux",
