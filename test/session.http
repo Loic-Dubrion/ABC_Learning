@@ -22,8 +22,8 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Consolidr les acquis",
-  "sequence_id": 3,
+  "name": "Faire de la bolo",
+  "sequence_id": 8,
   "card_id": 6,
   "tool_id": 19,
   "comments": "Par groupe de 4 max, mélanger les niveaux",
@@ -39,9 +39,7 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "name": "Consolider les acquis",
-  "sequence_id": 1,
-  "card_id": 6,
+  "name": "Tvuyruc",
   "activity_id": 6,
   "comments": "Par groupe de 4 max, mélanger les niveaux",
   "time": 60,
