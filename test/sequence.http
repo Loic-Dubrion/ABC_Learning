@@ -16,6 +16,11 @@ GET {{baseUrl}}/user/{{userId}}/sequence/
 Authorization: Bearer {{accessToken}}
 
 ###
+# Convert to excel
+GET {{baseUrl}}/user/{{userId}}/sequence/excel/{{sequenceId}}
+Authorization: Bearer {{accessToken}}
+
+###
 # Read One sequence
 GET {{baseUrl}}/user/{{userId}}/sequence/{{sequenceId}}/
 Authorization: Bearer {{accessToken}}

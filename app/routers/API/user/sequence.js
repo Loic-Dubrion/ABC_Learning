@@ -9,6 +9,12 @@ const SequenceController = require('../../../controllers/API/SequenceController'
 // Importing the controller handler
 const controllerHandler = require('../../../controllers/services/controllerHandler');
 
+
+router.get(
+  '/excel/:id',
+  controllerHandler(SequenceController.convertExcel.bind(SequenceController)),
+);
+
 /**
  * POST /sequences
  *
