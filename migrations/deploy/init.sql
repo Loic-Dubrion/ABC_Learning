@@ -90,6 +90,7 @@ CREATE TABLE "card" (
     "name" TEXT UNIQUE NOT NULL,
     "activities" TEXT[],
     "comments" TEXT NOT NULL,
+    "color" VARCHAR(7),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

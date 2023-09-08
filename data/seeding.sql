@@ -127,14 +127,14 @@ INSERT INTO tool (name, tool_category_id, level_id)
   ('Documentation tool', 3, 2);
 
 -- Insertion into 'card' table
-INSERT INTO card (name, comments, activities)
+INSERT INTO card (name, comments, activities, color)
   VALUES 
-  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos', ARRAY['Ecouter l''enseignant, suivre des cours, des conférences', 'Consulter des documents, articles', 'Lire des ressources numériques, multimédia, des sites web']),
-  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself', ARRAY['Projets en petits groupes, suivre des cours, des conférences', 'Construction / élaboration d''une production commune', 'Discussion autour des productions de tiers']),
-  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher and/or from their peers', ARRAY['Communication', 'Groupes de discussion synchrones et asynchrones', 'Remue-méninges, nuages de mots']),
-  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught', ARRAY['Comparaison de textes', 'Recherche et évaluation d''informations et d''idées', 'Observations lors d''un TP ou sur le terrain']),
-  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action.', ARRAY['Faire des exercices, des tests formatifs', 'Laboratoires', 'Etude de cas']),
-  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice', ARRAY['Bilans, commentaires, compte-rendu', 'Rapports, mémoires', 'Prestations (performance)']);
+  ('Acquisition', 'Learning through acquisition is what learners are doing when they are listening to a lecture or podcast, reading from books or websites, and watching demos or videos', ARRAY['Ecouter l''enseignant, suivre des cours, des conférences', 'Consulter des documents, articles', 'Lire des ressources numériques, multimédia, des sites web'], '#16b1a2'),
+  ('Collaboration', 'Learning through collaboration embraces mainly discussion, practice, and production. Building on investigations and acquisition it is about taking part in the process of knowledge building itself', ARRAY['Projets en petits groupes, suivre des cours, des conférences', 'Construction / élaboration d''une production commune', 'Discussion autour des productions de tiers'], '#f39200'),
+  ('Discussion', 'Learning through discussion requires the learner to articulate their ideas and questions, and to challenge and respond to the ideas and questions from the teacher and/or from their peers', ARRAY['Communication', 'Groupes de discussion synchrones et asynchrones', 'Remue-méninges, nuages de mots'], '#1d71b8'),
+  ('Investigation', 'Learning through investigation guides the learner to explore, compare and critique the texts, documents and resources that reflect the concepts and ideas being taught', ARRAY['Comparaison de textes', 'Recherche et évaluation d''informations et d''idées', 'Observations lors d''un TP ou sur le terrain'], '#be1622'),
+  ('Practice', 'Learning through practice enables the learner to adapt their actions to the task goal, and use the feedback to improve their next action.', ARRAY['Faire des exercices, des tests formatifs', 'Laboratoires', 'Etude de cas'], '#662483'),
+  ('Production', 'Learning through production is the way the teacher motivates the learner to consolidate what they have learned by articulating their current conceptual understanding and how they used it in practice', ARRAY['Bilans, commentaires, compte-rendu', 'Rapports, mémoires', 'Prestations (performance)'], '#3aaa35');
 
 -- Insertion into 'session' table
 INSERT INTO session (name, sequence_id, card_id, tool_id, comments, time, is_face_to_face, is_group_work, equipment)

@@ -12,8 +12,8 @@ const userRouter = require('./user');
 const toolRouter = require('./tool');
 
 // Uncomment to apply role and permission checks
-router.use('/:userId', authorize, checkRole);
-router.use('/tool', authorize, checkPermission('crud_tool'));
+// router.use('/:userId', authorize, checkRole);
+// router.use('/tool', authorize, checkPermission('crud_tool'));
 
 router.use('/:userId/sequence', sequenceRouter);
 router.use('/:userId/session', sessionRouter);

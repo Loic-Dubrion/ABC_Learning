@@ -12,6 +12,7 @@ AS $$
         'card_id', c.id,
         'card_name', c.name,
         'activities', c.activities,
+        'color', c.color,
         'tool_categories', (
             SELECT json_agg(json_build_object(
                 'tool_category_id', tc.id,
