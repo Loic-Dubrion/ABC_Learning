@@ -16,14 +16,21 @@ class SequenceController extends CoreController {
   async convertExcel(request, response) {
     const { id, userId } = request.params;
     const results = await this.dataMapper.executeFunction('get_sequence_detail', id, userId);
-    console.log("Avant la conversion")
     const excelStream = await convert.jsonToExcel(results);
-    console.log("après la conversion")
 
     response.setHeader('Content-Disposition', 'attachment; filename=sequenceData.xlsx');
     response.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    console.log("TEST EXCEL : ", excelStream);
     excelStream.pipe(response);
+  }
+
+  async convertPdf(request, response) {
+    const { id, userId } = request.params;
+    const results = await this.dataMapper.executeFunction('get_sequence_detail', id, userId);
+    const pdf = await convert.jsonToPdf(results);
+
+    response.setHeader('Content-Type', 'application/pdf');
+    response.setHeader('Content-Disposition', 'attachment; filename=output.pdf');
+    pdf.pipe(response);
   }
 }
 

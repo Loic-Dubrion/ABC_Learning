@@ -1,0 +1,48 @@
+<html>
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    {{#each this}}
+        <h2>{{ sequence_name }}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Session ID</th>
+                    <th>Session Name</th>
+                    <th>Card Name</th>
+                    <th>Tool Name</th>
+                    <th>Comments</th>
+                    <th>Time</th>
+                    <th>Is Face to Face?</th>
+                    <th>Is Group Work?</th>
+                    <th>Equipment</th>
+                    <th>Level Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each sessions}}
+                <tr>
+                    <td>{{ session_id }}</td>
+                    <td>{{ session_name }}</td>
+                    <td>{{ card_name }}</td>
+                    <td>{{ tool_name }}</td>
+                    <td>{{ comments }}</td>
+                    <td>{{ time }}</td>
+                    <td>{{ is_face_to_face }}</td>
+                    <td>{{ is_group_work }}</td>
+                    <td>{{ equipment }}</td>
+                    <td>{{ level_name }}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{/each}}
+</body>
+</html>

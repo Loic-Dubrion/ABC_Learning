@@ -9,10 +9,32 @@ const SequenceController = require('../../../controllers/API/SequenceController'
 // Importing the controller handler
 const controllerHandler = require('../../../controllers/services/controllerHandler');
 
-
+/**
+ * GET /sequences
+ *
+ * @summary Convert a sequence, json to excel
+ * @tags Sequences - Operations related to sequences
+ * @description This route is used to convert a json sequence into an excel file.
+ * @return {object} 200 - Successful response, excel file attached.
+ * @throws {Error} On failure
+ */
 router.get(
   '/excel/:id',
   controllerHandler(SequenceController.convertExcel.bind(SequenceController)),
+);
+
+/**
+ * GET /sequences
+ *
+ * @summary Convert a sequence, json to pdf
+ * @tags Sequences - Operations related to sequences
+ * @description This route is used to convert a json sequence into an pdf file.
+ * @return {object} 200 - Successful response, pdf file attached.
+ * @throws {Error} On failure
+ */
+router.get(
+  '/pdf/:id',
+  controllerHandler(SequenceController.convertPdf.bind(SequenceController)),
 );
 
 /**
