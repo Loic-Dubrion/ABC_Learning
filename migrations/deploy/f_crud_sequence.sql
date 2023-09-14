@@ -25,7 +25,8 @@ BEGIN
           'is_face_to_face', ses.is_face_to_face,
           'is_group_work', ses.is_group_work,
           'equipment', ses.equipment,
-          'level_name', l.name
+          'level_name', l.name,
+          'color', c.color
         )
       ORDER BY ses.id) AS session_data
     FROM session ses
