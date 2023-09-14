@@ -18,6 +18,7 @@ BEGIN
         json_build_object(
           'session_id', ses.id,
           'session_name', ses.name,
+          'card_id', c.id,
           'card_name', c.name,
           'tool_name', t.name,
           'comments', ses.comments,
