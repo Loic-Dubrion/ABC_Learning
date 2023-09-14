@@ -5,6 +5,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const setupLTI = require('./services/ltiConfig');
 
 // necessary modules
 const bodySanitizer = require('./services/sanitizer');
@@ -23,6 +24,12 @@ const corsOptions = {
   origin: '*',
 };
 
+// LTI setup
+const LTI = setupLTI();
+LTI.onConnect((token, req, res) => {
+  res.send('Connected to LTI');
+});
+
 // Use bodySanitizer for all requests
 app.use(bodySanitizer);
 
@@ -30,6 +37,7 @@ app.use(bodySanitizer);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+app.use(LTI.app);
 
 // Routers
 app.use(router);

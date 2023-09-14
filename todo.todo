@@ -51,3 +51,12 @@
   - [ ] Route for adding roles (super_admin must be able to give admin roles)
   - [ ] Linking tools to an establishment
   - [ ] Link sessions to a user
+
+- Link moodle
+  1- Installer et configurer le plugin LTI sur Moodle:
+    Mode admin
+    "Extensions" -> "Installer des extensions" et recherchez "LTI".
+  2- Configurer un fournisseur d'outils LTI:
+    "Site administration" -> "Plugins" -> "External tool" -> "Manage tools".
+    Ajoutez un nouvel outil (Configure a tool) en fournissant les détails requis,
+    y compris l'URL de lancement, la clé du client et le secret partagé.
