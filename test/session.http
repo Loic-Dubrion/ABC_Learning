@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
   "name": "Lasagne",
-  "sequence_id": 3,
+  "sequence_id": 1,
   "card_id": 6,
   "tool_id": 19,
   "comments": "Par groupe de 4 max, mélanger les niveaux",

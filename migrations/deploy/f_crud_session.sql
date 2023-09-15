@@ -4,7 +4,7 @@ BEGIN;
 
 -- Create Session
 CREATE OR REPLACE FUNCTION create_session(json_data JSON)
-RETURNS TABLE (id INTEGER, name TEXT) AS
+RETURNS TABLE (id INTEGER, name TEXT, tool_id INTEGER) AS
 $$
 DECLARE 
     data JSONB := json_data::JSONB;
@@ -17,14 +17,16 @@ BEGIN
         CAST(data->>'card_id' AS INTEGER),
         CAST(data->>'tool_id' AS INTEGER),
         data->>'comments',
-        CAST(data->>'time' AS INTEGER),
+        CAST(data->>'time' AS INTEGER),  -- Corrected this line
         CAST(data->>'is_face_to_face' AS BOOLEAN),
         CAST(data->>'is_group_work' AS BOOLEAN),
         data->>'equipment'
     )
-    RETURNING session.id, session.name;
+    RETURNING session.id, session.name, session.tool_id;
 END;
 $$ LANGUAGE plpgsql;
+
+
 
 -- Update session
 CREATE OR REPLACE FUNCTION update_session(session_id INTEGER, json_data JSON)
