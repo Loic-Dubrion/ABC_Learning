@@ -20,6 +20,7 @@ BEGIN
           'session_name', ses.name,
           'card_id', c.id,
           'card_name', c.name,
+          'tool_id', t.id,
           'tool_name', t.name,
           'comments', ses.comments,
           'time', ses.time,
