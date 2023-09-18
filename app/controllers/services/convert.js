@@ -11,25 +11,35 @@ const convert = {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Data');
 
-    const headers = ["sequence_id", "sequence_name", ...Object.keys(data[0].sessions[0])];
-    worksheet.addRow(headers);
-
     for (let sequence of data) {
+        worksheet.addRow([sequence.sequence_name]).font = { bold: true };
+
+        // Headers for sessions
+        worksheet.addRow(["Session Name", "Card Name", "Tool Name", "Comments", "Duration", "Level", "Equipment", "Mode", "Group Work"]);
+
         for (let session of sequence.sessions) {
             const row = [
-                sequence.sequence_id,
-                sequence.sequence_name,
-                ...Object.values(session)
+                session.session_name,
+                session.card_name,
+                session.tool_name,
+                session.comments,
+                session.time,
+                session.level_name,
+                session.equipment,
+                session.is_face_to_face ? 'Distanciel' : 'Présentiel',
+                session.is_group_work ? 'En groupe' : 'Individuel'
             ];
             worksheet.addRow(row);
         }
+
+        worksheet.addRow([]); // Adding an empty row for spacing
     }
 
     const stream = new require('stream').PassThrough();
     await workbook.xlsx.write(stream);
 
     return stream;
-  },
+},
 
   async jsonToPdf(data) {
     // 1. Convertir le JSON en HTML avec Handlebars
