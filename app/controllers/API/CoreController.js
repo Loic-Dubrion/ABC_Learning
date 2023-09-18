@@ -35,7 +35,6 @@ class CoreController {
     if (!results) {
       throw new Error404('Not Found');
     }
-    console.log("controller: ", value, field);
     response.json(results);
   }
 
